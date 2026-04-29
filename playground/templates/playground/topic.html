@@ -1,0 +1,16 @@
+{% extends "playground/base.html" %}
+
+{% block content %}
+  <p> Topic: {{ topic }}</p>
+  <p> Entries:</p>
+  <ul>
+    {% for ent in entry %}
+      <li>
+        <p>{{ ent.date_added }}</p>
+        <p>{{ ent.text|linebreaks }}</p>
+      </li>
+    {% empty %}
+      <li>Empty set of entry</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

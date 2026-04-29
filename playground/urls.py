@@ -2,10 +2,10 @@
 from django.urls import path
 from . import views
 
+
 #urlConf
 urlpatterns = [
-  # path('playground/hello', views.say_hello)
-  
-  # url(r'^$', views.index, name='index'), #homepage
   path('', views.index, name='home'),
-  ]
+  path('topics/', views.topics, name='topics'),
+  path('topic/<int:pk>/', views.topic, name='topic')
+]

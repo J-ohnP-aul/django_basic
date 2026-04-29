@@ -1,0 +1,12 @@
+{% extends "playground/base.html" %}
+
+{% block content %}
+  <ul>
+    {% for topic in topics %}
+    <a href="{% url 'topic' topic.id %}">{{ topic.text|linebreaks }}</a>
+    {% empty %}
+    <li>No topics have been added yet.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}
