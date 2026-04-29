@@ -4,6 +4,8 @@ from django.db import models
 class Topic(models.Model):
   text = models.CharField(max_length=200)
   date_added = models.DateTimeField(auto_now=True)
+  def __str__(self):
+    return self.text
   
 class Entry(models.Model):
   # somthng specific learned about a topic
@@ -16,7 +18,6 @@ class Entry(models.Model):
     
   def __str__(self):
     '''rtn string rep of model'''
-    # return super().__str__()
     return self.text[:50] + "..."
   
   
