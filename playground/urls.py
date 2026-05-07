@@ -5,6 +5,8 @@ from . import views
 
 
 #urlConf
+app_name = 'playground'
+
 urlpatterns = [
   path('', views.index, name='home'),
   path('topics/', views.topics, name='topics'),

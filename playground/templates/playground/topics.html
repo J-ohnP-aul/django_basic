@@ -3,11 +3,11 @@
 {% block content %}
   <ul>
     {% for topic in topics %}
-    <a href="{% url 'topic' topic.id %}">{{ topic.text|linebreaks }}</a>
+    <a href="{% url 'playground:topic' topic.id %}">{{ topic.text|linebreaks }}</a>
     {% empty %}
     <li>No topics have been added yet.</li>
     {% endfor %}
   </ul>
-  <a href="{% url 'new_topic' %}">Add new Topic</a>
+  <a href="{% url 'playground:new_topic' %}">Add new Topic</a>
 
 {% endblock content %}

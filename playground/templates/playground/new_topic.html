@@ -1,7 +1,7 @@
 {% extends "playground/base.html" %}
 
 {% block content %}
-  <form action="{% url 'new_topic' %}" method="post">
+  <form action="{% url 'playground:new_topic' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Add topic</button>

@@ -18,7 +18,7 @@ def topics(request):
 
 def topic(request, pk):
   topic = Topic.objects.get(id=pk)
-  entries = topic.entry_set.order_by('-date_added')
+  entries = topic.entry_set.all().order_by('-date_added')
   return render(request, 'playground/topic.html', {'topic':topic, 'entries':entries})
 
 def new_topic(request):
@@ -42,6 +42,8 @@ def new_entry(request, pk):
       new_entry.topic = topic
       new_entry.save()
       return redirect('topic', pk)
+    else:
+      print(form.errors)
   return render(request, 'playground/new_entry.html', {'topic':topic, 'form':form})
   
 def edit_entry(request, pk):
@@ -54,7 +56,7 @@ def edit_entry(request, pk):
     form = EnrtyForm(instance=entry, data=request.POST)
     if form.is_valid():
       form.save()
-      return redirect('topic', pk)
+      return redirect('topic', entry.topic.id)
   return render(request, 'playground/edit_entry.html', {'topic':topic, 'entry':entry, 'form':form})
 
     

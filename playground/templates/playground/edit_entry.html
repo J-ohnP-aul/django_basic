@@ -1,9 +1,9 @@
 {% extends "playground/base.html" %}
 
 {% block content %}
-<p><a href="{% url 'topic' topic.id %}"><{{ topic }}/a></p>
+  <p><a href="{% url 'playground:topic' topic.id %}">{{ topic }}</a></p>
   <p>edit Entry:</p>
-  <form action="{% url 'edit_entry' entry.id %}" method="post">
+  <form action="{% url 'playground:edit_entry' entry.id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">edit changes</button>

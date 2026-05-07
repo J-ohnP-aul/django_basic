@@ -7,8 +7,14 @@
   </head>
   <body>
     <p>
-      <a href="{% url 'home' %}">plearning_log</a> <br>
-      <a href="{% url 'topics' %}">topics</a>
+      <a href="{% url 'playground:home' %}">plearning_log</a> <br>
+      <a href="{% url 'playground:topics' %}">topics</a>
+      {% if user.is_authenticated %}
+        hello, {{ user.username }}
+        <a href="{% url 'users:logout' %}"> Log out >></a>
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+      {% endif %}
     </p>    
     {% block content %}    {% endblock content %}    
   </body>

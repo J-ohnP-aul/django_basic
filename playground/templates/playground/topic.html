@@ -3,16 +3,17 @@
 {% block content %}
   <p> Topic: {{ topic }}</p>
   <p> Entries:</p>
+  <p>ID: {{ entry.id }}</p>
   <p>
-    <a href="{% url 'new_entry' topic.id %}">Add new entry</a>
+    <a href="{% url 'playground:new_entry' topic.id %}">Add new entry</a>
   </p>
   <ul>
-    {% for ent in entries %}
+    {% for entry in entries %}
       <li>
-        <p>{{ ent.date_added|date:"Y-m-d" }}</p>
-        <p>{{ ent.text|linebreaks }}</p>
+        <p>{{ entry.date_added|date:"Y-m-d" }}</p>
+        <p>{{ entry.text|linebreaks }}</p>
         <p>
-          <a href="{% url 'edit_entry' entry.id %}">edit Entry</a>
+          <a href="{% url 'playground:edit_entry' entry.id %}">edit Entry</a>
         </p>
       </li>
     {% empty %}
