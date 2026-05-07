@@ -6,6 +6,6 @@ from . import views
 app_name = "users"
 
 urlpatterns = [
-  path('logout', views.logout_user, name='logout')
-  #path('login/', login,{'template_name':'users/login.html'}, name='users:login'),
+  path('logout', views.logout_user, name='logout'),
+  path("register", views.register_v, name="register")
 ]
