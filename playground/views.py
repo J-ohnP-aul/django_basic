@@ -19,11 +19,16 @@ def topics(request):
   topics = Topic.objects.filter(owner=request.user).order_by('date_added')
   return render(request, 'playground/topics.html', {"topics":topics})
 
+
+def topic_lim_user(topic, request):
+  if topic.owner != request.user:
+    raise Http404
+
+
 @login_required
 def topic(request, pk):
   topic = Topic.objects.get(id=pk)
-  if topic.owner != request.user:
-    raise Http404
+  topic_lim_user(topic, request)
   entries = topic.entry_set.all().order_by('-date_added')
   return render(request, 'playground/topic.html', {'topic':topic, 'entries':entries})
 
@@ -53,7 +58,7 @@ def new_entry(request, pk):
       new_entry = form.save(commit=False)      
       new_entry.topic = topic
       new_entry.save()
-      return redirect('topic', pk)
+      return redirect('playground:topic', pk)
     else:
       print(form.errors)
   return render(request, 'playground/new_entry.html', {'topic':topic, 'form':form})
@@ -62,8 +67,7 @@ def new_entry(request, pk):
 def edit_entry(request, pk):
   entry = Entry.objects.get(id=pk)
   topic = entry.topic
-  if topic.owner != request.user:
-    raise Http404
+  topic_lim_user(topic, request)
   
   if request.method != 'POST':
     form = EnrtyForm(instance=entry) #prefill with current details
@@ -74,4 +78,7 @@ def edit_entry(request, pk):
       return redirect('topic', entry.topic.id)
   return render(request, 'playground/edit_entry.html', {'topic':topic, 'entry':entry, 'form':form})
 
-    
+def delete_entry(pk):
+  entry = Entry.objects.get(id=pk)
+  entry.delete()
+  return render('playground/del_entry.html', {'entry':entry})

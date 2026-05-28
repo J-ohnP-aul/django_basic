@@ -3,7 +3,7 @@
 {% block content %}
   <p> Topic: {{ topic }}</p>
   <p> Entries:</p>
-  <p>ID: {{ entry.id }}</p>
+  <p>ID: {{ topic.id }}</p>
   <p>
     <a href="{% url 'playground:new_entry' topic.id %}">Add new entry</a>
   </p>
@@ -13,8 +13,10 @@
         <p>{{ entry.date_added|date:"Y-m-d" }}</p>
         <p>{{ entry.text|linebreaks }}</p>
         <p>
-          <a href="{% url 'playground:edit_entry' entry.id %}">edit Entry</a>
+          <a href="{% url 'playground:edit_entry' entry.id %}">edit Entry</a>| |
+          <a href="{% url 'playground:del_entry' entry.id %}"> delete_entry!!</a>
         </p>
+        
       </li>
     {% empty %}
       <li>Empty set of entry</li>

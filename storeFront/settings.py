@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    # 3d prty
+    'bootstrap3',
     # my Apps
     'playground',
     'users',
@@ -121,3 +123,8 @@ STATIC_URL = 'static/'
 
 LOGIN_URL = '/users/login'
 LOGIN_REDIRECT_URL='/'
+
+# sting for dj bootstrap 3
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}
