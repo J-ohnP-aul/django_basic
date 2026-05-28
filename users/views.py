@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
+
 def logout_user(request):
   logout(request)
   return redirect('playground:home')

@@ -47,5 +47,29 @@
       </div>
     </div>
     
+
+    <!-- <p>
+      <a href="{% url 'playground:home' %}">learning_log</a> <br>
+      <a href="{% url 'playground:topics' %}">topics</a>
+    </p>
+
+      <div class="container">
+        {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        {% endif %}
+      <p>
+        {% if user.is_authenticated %}
+          hello, {{ user.username }}
+          <a href="{% url 'users:logout' %}"> Log out >></a>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a> <br>
+          <a href="{% url 'users:register' %}"> sign Up</a>
+        {% endif %}
+      </p>    
+       
+
+      </div> -->
   </body>
 </html>

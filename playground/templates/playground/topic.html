@@ -9,17 +9,33 @@
   </p>
   <ul>
     {% for entry in entries %}
+      <div class="panel panel-default">
+        <div class="pannel-heading">
+          <h3>
+            {{ entry.date_added|date:"Y-m-d" }}
+            <small>
+              <a href="{% url 'playground:edit_entry' entry.id %}">edit Entry</a>| |
+            </small>
+            <small>
+              <a href="{% url 'playground:del_entry' entry.id %}"> delete_entry!!</a>
+            </small>
+          </h3>
+        </div>
+        <div class="panel-body">
+          {{ entry.text|linebreaks }}
+        </div>
+      </div>
+<!-- 
       <li>
         <p>{{ entry.date_added|date:"Y-m-d" }}</p>
         <p>{{ entry.text|linebreaks }}</p>
         <p>
           <a href="{% url 'playground:edit_entry' entry.id %}">edit Entry</a>| |
-          <a href="{% url 'playground:del_entry' entry.id %}"> delete_entry!!</a>
         </p>
         
-      </li>
+      </li> -->
     {% empty %}
-      <li>Empty set of entry</li>
+      There are no Entries
     {% endfor %}
   </ul>
 {% endblock content %}
